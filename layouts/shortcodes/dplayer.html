@@ -1,0 +1,12 @@
+<div align=center>
+<div id="{{- .Get `id`  -}}"></div>
+<script>
+    dp = new DPlayer({
+    container: document.getElementById('{{- .Get `id` -}}'),
+    video: {
+        url: '{{ .Site.BaseURL  }}{{- .Get `path` -}}',
+        // subtitle.url: '{{ .Site.BaseURL  }}{{- .Get `path` -}}'
+    },
+});
+</script>
+</div>

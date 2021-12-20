@@ -1,0 +1,11 @@
+<!-- <div>
+    <iframe height='{{- .Get `h` | default `auto` -}}' height="auto" src='{{ .Site.BaseURL  }}{{- .Get `path` -}}' type="application/pdf" width="100%"></iframe>
+</div> -->
+<!-- 不可是纯数字 -->
+<div id='a{{- .Get `id` -}}'></div>
+<script>
+    var options = {
+            fallbackLink: "<p>该浏览器不支持内嵌PDF文档  <a href='[url]'>下载 PDF</a></p>"
+            };
+    PDFObject.embed("{{ .Site.BaseURL  }}{{- .Get `path` -}}", "#a{{- .Get `id` -}}", {height:'{{- .Get `h` | default `50rem` -}}'}, options);
+</script>

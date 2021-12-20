@@ -1,0 +1,93 @@
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- 禁止缓存，以应对github page的加载更新策略 -->
+	<!-- meta http-equiv="Pragma" content="no-cache"  -->
+	{{- $title := ( .Title ) -}}
+	{{- $siteTitle := ( .Site.Title ) -}}
+	{{- if .IsHome -}}
+	<title>{{ $siteTitle }} | Home </title>
+	{{- else -}}
+	<title>{{ $title }} - {{ $siteTitle }}</title>
+	{{- end -}}
+
+	{{- if isset .Site.Params "favicon" -}}
+	<link rel="icon" type="image/png" href={{ .Site.BaseURL }}favicon.ico />
+	{{- end -}}
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- 描述通常不用 -->
+	<!-- <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" /> -->
+	<!-- 首页文章展示图片，没有 -->
+	<!-- <meta property="og:image" content="{{ .Site.Params.og_image }}"/>
+	{{ with .OutputFormats.Get "rss" -}}
+	{{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+	{{ end -}} -->
+
+	<!-- 分享opengraph -->
+	<!-- {{- template "_internal/opengraph.html" . -}} -->
+	<!-- 分享推特，不用 -->
+	<!-- {{- template "_internal/twitter_cards.html" . -}} -->
+	{{ if and (isset .Site.Params "social") (.Site.Params.useCDN | default false) -}}
+		<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+	{{- else if (isset .Site.Params "social") -}}
+		<script src="{{ .Site.BaseURL }}js/feather.min.js"></script>
+	{{ end }}
+	{{ if .Site.Params.useCDN | default false -}}
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	{{- else -}}
+	{{ $fontstyle := resources.Get "css/fonts.css" | fingerprint }}
+        <link href="{{ $fontstyle.Permalink }}" rel="stylesheet">
+	{{ end }}
+
+	{{ $style := resources.Get "css/main.css" | fingerprint }}
+	<link rel="stylesheet" type="text/css" media="screen" href="{{ $style.Permalink }}" />
+
+	{{ $aplayer_css := resources.Get "aplayer/APlayer.min.css" }}
+	{{ $aplayer_js := resources.Get "aplayer/APlayer.min.js" }}
+	{{ $dplayer_js := resources.Get "dplayer/DPlayer.min.js" }}
+	<link rel="stylesheet" href="{{ $aplayer_css.Permalink }}" >
+	<script src="{{ $aplayer_js.Permalink }}"></script>
+	<script src="{{ $dplayer_js.Permalink }}"></script>
+	<script src="{{ .Site.BaseURL }}js/pdfobject.min.js"></script>
+
+	<link rel="stylesheet" href="{{ .Site.BaseURL }}js/katex.min.css">
+	<script defer src="{{ .Site.BaseURL }}js/katex.min.js"></script>
+	<script defer src="{{ .Site.BaseURL }}js/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+
+	<!-- 内联公式支持 -->
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			renderMathInElement(document.body, {
+				delimiters: [
+				{left: "$$", right: "$$", display: true},
+				{left: "\\[", right: "\\]", display: true},
+				{left: "$", right: "$", display: false},
+				{left: "\\(", right: "\\)", display: false}
+				]
+			});
+		});
+	</script>
+
+	{{- if or (eq .Site.Params.mode "auto") (eq .Site.Params.mode "dark") (eq .Site.Params.mode "toggle") -}}
+		{{ $darkstyle := resources.Get "css/dark.css" | fingerprint }}
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="{{ $darkstyle.Permalink }}" {{ if eq .Site.Params.mode "auto" }}media="(prefers-color-scheme: dark)"{{ end }} {{ if eq .Site.Params.mode "toggle" }}disabled{{ end }} />
+	{{ end }}
+	
+	<!-- Custom CSS style get applied last -->
+	{{- if isset .Site.Params "customcss" }}
+		{{ range .Site.Params.customCSS }}
+		{{ $customstyle := resources.Get . | fingerprint }}
+		<link rel="stylesheet" type="text/css" href="{{ $customstyle.Permalink }}">
+		{{ end }}
+	{{- end -}}
+	{{- range .Site.Params.customJS }}
+	{{- if or (hasPrefix . "http://") (hasPrefix . "https://") }}
+	<script src="{{ . }}"></script>
+	{{- else }}
+	<script src="{{ $.Site.BaseURL }}{{ . }}"></script>
+	{{- end }}
+	{{- end }}
+</head>
