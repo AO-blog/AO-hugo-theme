@@ -36,3 +36,27 @@
        url('../fonts/ibm-plex-mono-v6-latin-500italic.ttf') format('truetype'), /* Safari, Android, iOS */
        url('../fonts/ibm-plex-mono-v6-latin-500italic.svg#IBMPlexMono') format('svg'); /* Legacy iOS */
 }
+
+/* 点阵 */
+@font-face {
+  font-family: 'ZpixA';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Zpix');
+  src: url('../fonts/zpix.woff2'); /* 谷歌 */
+  /* src: url('../fonts/zpix.woff'); 谷歌 */
+  /* src: url('../fonts/zpix.ttf'); Safari */
+}
+
+
+/* code */
+@font-face {
+  font-family: 'Sarasa Mono Slab SC';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Sarasa Mono Slab SC');
+  src: url('../fonts/sarasa-mono-slab-sc-regular.woff2'); /* Chrome */
+  /* src: url('../fonts/sarasa-mono-slab-sc-regular.woff'); safari and so on */
+  /* src: url('../fonts/sarasa-mono-slab-sc-regular.ttf'); safari and so on */
+}
+
