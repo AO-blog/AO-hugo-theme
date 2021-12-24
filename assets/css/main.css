@@ -132,10 +132,11 @@
   code {
     background-color: #f1f1f1;
     padding: .1em .2em;
-    font-family: 'Sarasa Mono Slab SC';
+    font-family: 'DOS','Sarasa Mono Slab SC';
     /* font-family: 'ZpixA','Sarasa Mono Slab SC'; */
     /* font-family: 'Sarasa Mono Slab SC','Fira Sans', sans-serif; */
   }
+  
   p code{
     font-family: 'ZpixA','Sarasa Mono Slab SC';
   }
