@@ -1,3 +1,7 @@
+:root {
+  --mermaid-theme: dark; /*or base, dark, forest, neutral, night */
+}
+
 body {
   color: white;
   background-color: #202124;
@@ -25,7 +29,7 @@ code {
   padding: 0.1em 0.2em;
 }
 pre {
-  background-color: #272822;
+  background-color: #202124; 
   line-height: 1.4;
   overflow-x: auto;
   padding: 1em;
@@ -128,7 +132,7 @@ a:hover {
 .highlight pre code[class*='language-sh']::before {
   content: 'shell';
   background: green;
-  color:white
+  color:rgb(255, 255, 255)
 }
 .highlight pre code[class*='language-json']::before{
   content: 'json';
@@ -157,3 +161,5 @@ a:hover {
   background: royalblue;
   color: whitesmoke ;
 }
+
+/* Background */ .chroma { background-color: #131314 }

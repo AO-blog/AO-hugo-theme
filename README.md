@@ -4,12 +4,12 @@ Base on [archie](https://github.com/athul/archie)
 ## Feature
 - Google Analytics Script
 - Callouts
-- Tags
+- Tags [fixed]
 - Auto Dark Mode(based on system theme)
 - Dark/Light Mode toggle
 - tl:dr; frontamatter
 - Cache busting for CSS files
-- LaTex
+- LaTeX
 - Pdf display
 - Music Youtube Bilibili Dplayer Aplayer 
 

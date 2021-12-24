@@ -53,9 +53,9 @@
 	<script src="{{ $dplayer_js.Permalink }}"></script>
 	<script src="{{ .Site.BaseURL }}js/pdfobject.min.js"></script>
 
-	<link rel="stylesheet" href="{{ .Site.BaseURL }}js/katex.min.css">
-	<script defer src="{{ .Site.BaseURL }}js/katex.min.js"></script>
-	<script defer src="{{ .Site.BaseURL }}js/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+	<link rel="stylesheet" href="{{ .Site.BaseURL }}js/katex.min.css" crossorigin="anonymous">
+	<script defer src="{{ .Site.BaseURL }}js/katex.min.js" crossorigin="anonymous"></script>
+	<script defer src="{{ .Site.BaseURL }}js/auto-render.min.js" crossorigin="anonymous"  onload="renderMathInElement(document.body);"></script>
 
 	<!-- 内联公式支持 -->
 	<script>
@@ -65,17 +65,80 @@
 				{left: "$$", right: "$$", display: true},
 				{left: "\\[", right: "\\]", display: true},
 				{left: "$", right: "$", display: false},
-				{left: "\\(", right: "\\)", display: false}
+				{left: "\\(", right: "\\)", display: false},
+				// {left: "\\begin{equation}", right: "\\end{equation}", display: true},
+				// {left: "\\begin{align}", right: "\\end{align}", display: true},
+				// {left: "\\begin{alignat}", right: "\\end{alignat}", display: true},
+				// {left: "\\begin{gather}", right: "\\end{gather}", display: true},
+				// {left: "\\begin{CD}", right: "\\end{CD}", display: true}
 				]
 			});
 		});
 	</script>
 
+	<script src="{{ .Site.BaseURL }}js/mermaid.min.js"></script>
+
 	{{- if or (eq .Site.Params.mode "auto") (eq .Site.Params.mode "dark") (eq .Site.Params.mode "toggle") -}}
 		{{ $darkstyle := resources.Get "css/dark.css" | fingerprint }}
-		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="{{ $darkstyle.Permalink }}" {{ if eq .Site.Params.mode "auto" }}media="(prefers-color-scheme: dark)"{{ end }} {{ if eq .Site.Params.mode "toggle" }}disabled{{ end }} />
-	{{ end }}
-	
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="{{ $darkstyle.Permalink }}"{{ if eq .Site.Params.mode "auto" }}media="(prefers-color-scheme: dark)"{{ end }} {{ if eq .Site.Params.mode "toggle" }}disabled{{ end }} />
+		<script>
+		// const themeMedia = window.matchMedia("(prefers-color-scheme: light)");
+		// 	if (themeMedia.matches) {
+		// 		mermaid.initialize({
+		// 			// startOnLoad:true,
+		// 			theme: 'base'
+		// 		});
+		// 	} else {
+		// 		mermaid.initialize({
+		// 			// startOnLoad:true,
+		// 			theme: 'dark'
+		// 		});
+		// 	}
+		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+		var config = {
+			startOnLoad:true,
+			flowchart:{
+			useMaxWidth:true,
+			htmlLabels:true,
+			curve:'cardinal',
+			},
+			securityLevel:'loose',
+		};
+		var a=0;
+		function darkModeHandler() {
+			if (mediaQuery.matches) {
+				mermaid.initialize({
+					// startOnLoad:true,
+					theme: 'dark',
+					config
+				});
+				if (a>0){
+					document.location.reload(false);
+				}
+				a+=1;
+				console.log('深色模式')
+			} else {
+				mermaid.initialize({
+					// startOnLoad:true,
+					theme: 'base',
+					config
+				});
+				if (a>0){
+					document.location.reload(false);
+				}
+				a+=1;
+				console.log('浅色模式')
+			}
+		}
+
+		// 判断当前模式
+		darkModeHandler()
+		// 监听模式变化
+		mediaQuery.addListener(darkModeHandler)
+
+		</script>
+		{{ end }}
+
 	<!-- Custom CSS style get applied last -->
 	{{- if isset .Site.Params "customcss" }}
 		{{ range .Site.Params.customCSS }}
