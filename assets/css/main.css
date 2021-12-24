@@ -7,6 +7,7 @@
 /* --hovercolor:white; */
 --darkMaincolor: #50fa7b;
 }
+
 html {
   color: #232333;
   font-family: 'Roboto Mono', monospace;
@@ -83,8 +84,13 @@ ul > li::before {
 img {
   border: 3px solid #ececec;
   max-width: 100%;
-  display: block
+  display: block;
+  margin:0 auto;
   /* 防止图片进行缩进 */
+}
+@media screen and (min-width: 600px) {
+  img{max-width: 70%;}
+  
 }
 
 figure {
@@ -97,6 +103,7 @@ figure {
 figure img {
   max-height: 500px;
 }
+
 
 @media screen and (min-width: 600px) {
   figure {
@@ -154,6 +161,12 @@ pre code {
   /* padding: 0 1ch; */
    padding: 0 7%; 
   word-wrap: break-word;
+}
+
+@media screen and (max-width: 900px) {
+  .content {
+    padding: 0 1%;
+  } 
 }
 
 /* Header */
