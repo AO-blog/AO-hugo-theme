@@ -105,9 +105,9 @@ a:hover {
   border-color: #333;
 }
 
-.highlight {
+/* .highlight {
   background-color: #333;
-}
+} */
 .soc:hover {
   color: black;
 }
@@ -162,4 +162,8 @@ a:hover {
   color: whitesmoke ;
 }
 
-/* Background */ .chroma { background-color: #131314 }
+/* Background */ .chroma { background-color: #1c1c1c }
+
+.ln {
+  color: lightblue;
+}
