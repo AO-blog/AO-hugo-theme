@@ -69,3 +69,13 @@
   /* src: url('../fonts/sarasa-mono-slab-sc-regular.woff'); safari and so on */
   /* src: url('../fonts/sarasa-mono-slab-sc-regular.ttf'); safari and so on */
 }
+
+@font-face {
+  font-family: 'DOS-c';
+  font-style: normal;
+  font-weight: 400;
+  /* src: local('Sarasa Mono Slab SC'); */
+  src: url('../fonts/ipix.woff2'); /* Chrome */
+  /* src: url('../fonts/sarasa-mono-slab-sc-regular.woff'); safari and so on */
+  /* src: url('../fonts/sarasa-mono-slab-sc-regular.ttf'); safari and so on */
+}

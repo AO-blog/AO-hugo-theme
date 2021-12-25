@@ -10,7 +10,7 @@
   
   html {
     color: #232333;
-    font-family: 'ZpixA','Sarasa Mono Slab SC';
+    font-family: 'ZpixA','DOS-c','Sarasa Mono Slab SC';
     /* font-family: 'ZpixA','Sarasa Mono Slab SC','Roboto Mono', monospace; */
     /* font-size: 15px; */
     font-size: 17px;
@@ -33,9 +33,14 @@
     background: var(--maincolor);
     color: #fff;
   }
+
+  text{
+    font-family: 'ZpixA','DOS-c','Sarasa Mono Slab SC';
+    /* font-family: 'ZpixA','Sarasa Mono Slab SC','Roboto Mono', monospace; */
+}
   
   p {
-    font-family: 'ZpixA','Sarasa Mono Slab SC';
+    font-family: 'ZpixA','DOS-c','Sarasa Mono Slab SC';
     /* font-family: 'ZpixA','Sarasa Mono Slab SC','Fira Sans', sans-serif; */
     line-height: 1.5;
     /* 设置缩进 */
@@ -132,13 +137,13 @@
   code {
     background-color: #f1f1f1;
     padding: .1em .2em;
-    font-family: 'DOS','Sarasa Mono Slab SC';
+    font-family: 'DOS','DOS-c','Sarasa Mono Slab SC';
     /* font-family: 'ZpixA','Sarasa Mono Slab SC'; */
     /* font-family: 'Sarasa Mono Slab SC','Fira Sans', sans-serif; */
   }
   
   p code{
-    font-family: 'ZpixA','Sarasa Mono Slab SC';
+    font-family: 'DOS','DOS-c','ZpixA','Sarasa Mono Slab SC';
   }
   
   pre {
@@ -161,6 +166,7 @@
     color: inherit;
     font-size: 100%;
     padding: 0;
+    font-family: 'DOS','DOS-c','ZpixA','Sarasa Mono Slab SC';
   }
   
   /* Containers */
@@ -505,4 +511,8 @@
   
     .chroma {
       background-color: #ececec;
+  }
+
+  *:not(span, pre){
+    font-family: 'ZpixA','DOS-c','DOS','Sarasa Mono Slab SC';
   }
