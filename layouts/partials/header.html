@@ -38,11 +38,13 @@
         <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 	{{- else -}}
-	{{ $fontstyle := resources.Get "css/fonts.css" | fingerprint }}
+	<!-- {{ $fontstyle := resources.Get "css/fonts.css" | fingerprint }} -->
+	{{ $fontstyle := resources.Get "css/fonts.css" }}
         <link href="{{ $fontstyle.Permalink }}" rel="stylesheet">
 	{{ end }}
 
-	{{ $style := resources.Get "css/main.css" | fingerprint }}
+	{{ $style := resources.Get "css/main.css" }}
+	<!-- {{ $style := resources.Get "css/main.css" | fingerprint }} -->
 	<link rel="stylesheet" type="text/css" media="screen" href="{{ $style.Permalink }}" />
 
 	{{ $aplayer_css := resources.Get "aplayer/APlayer.min.css" }}
@@ -79,7 +81,8 @@
 	<script src="{{ .Site.BaseURL }}js/mermaid.min.js"></script>
 
 	{{- if or (eq .Site.Params.mode "auto") (eq .Site.Params.mode "dark") (eq .Site.Params.mode "toggle") -}}
-		{{ $darkstyle := resources.Get "css/dark.css" | fingerprint }}
+		{{ $darkstyle := resources.Get "css/dark.css" }}
+		<!-- {{ $darkstyle := resources.Get "css/dark.css" | fingerprint }} -->
 		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="{{ $darkstyle.Permalink }}"{{ if eq .Site.Params.mode "auto" }}media="(prefers-color-scheme: dark)"{{ end }} {{ if eq .Site.Params.mode "toggle" }}disabled{{ end }} />
 		<script>
 		// const themeMedia = window.matchMedia("(prefers-color-scheme: light)");
@@ -142,7 +145,8 @@
 	<!-- Custom CSS style get applied last -->
 	{{- if isset .Site.Params "customcss" }}
 		{{ range .Site.Params.customCSS }}
-		{{ $customstyle := resources.Get . | fingerprint }}
+		{{ $customstyle := resources.Get . }}
+		<!-- {{ $customstyle := resources.Get . | fingerprint }} -->
 		<link rel="stylesheet" type="text/css" href="{{ $customstyle.Permalink }}">
 		{{ end }}
 	{{- end -}}
