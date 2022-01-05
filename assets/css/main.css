@@ -167,8 +167,10 @@
     font-size: 100%;
     padding: 0;
     font-family: 'DOS','DOS-c','ZpixA','Sarasa Mono Slab SC';
+    
   }
-  
+  .highlight pre ::selection { background:pink; }
+
   /* Containers */
   .content {
     margin-bottom: 4em;
